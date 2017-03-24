@@ -17,7 +17,7 @@ class _WindowPoller {
       return;
     }
     if (_window.closed) {
-      await new Future().delayed(new Duration(milliseconds:100));
+      await new Future().delayed(new Duration(milliseconds:2000));
       if (_completer.isCompleted) return;
       _completer.completeError(new Exception("User closed the window"));
     } else {
