@@ -12,11 +12,13 @@ class _WindowPoller {
   }
 
 
-  void poll() {
+  Future poll() async {
     if (_completer.isCompleted) {
       return;
     }
     if (_window.closed) {
+      await new Future().delayed(new Duration(milliseconds:100));
+      if (_completer.isCompleted) return;
       _completer.completeError(new Exception("User closed the window"));
     } else {
       var timer = new Timer(const Duration(milliseconds: 10), poll);
